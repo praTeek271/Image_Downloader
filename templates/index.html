@@ -6,10 +6,10 @@
 <body>
     <h1>Image Gallery</h1>
     <ul>
-        {% for image_name in image_names %}
+        {% for image_name,thumb_name in file_names %}
             <li>
                 <a href="/download?image_name={{ image_name }}">
-                    <img src="{{ url_for('static', filename='images/' + image_name) }}" alt="{{ image_name }}">
+                    <img src="{{thumb_name}}" alt="{{ image_name }}">
                 </a>
             </li>
         {% endfor %}
