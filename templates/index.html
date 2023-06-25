@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .overlay {
+            position: relative;
+            display: flex;
+        }
+
+        .download_content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .imag:hover .download_content {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        .imag:target .download_content {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        .imag:active .download_content {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        .imag:focus .download_content {
+            bottom: 0;
+            opacity: 1;
+        }
+    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <h1>Image Gallery</h1>
     <ul>
         {% for image_name,thumb_name in file_names %}
-            <li>
-                <a href="/download?image_name={{ image_name }}">
-                    <img src="{{thumb_name}}" alt="{{ image_name }}">
-                </a>
-            </li>
+        <div class="overlay imag">
+
+            <a class="imag" href="/download?image_name={{ image_name }}">
+                <img src="{{thumb_name}}" class="imag" alt="{{ image_name }}">
+            </a>
+            <span class="download_content">
+                <box-icon  name='download' type='solid' animation='fade-down' color='#9fe9ef'></box-icon>
+                download
+            </span>
+        </div>
         {% endfor %}
     </ul>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </body>
+
 </html>
